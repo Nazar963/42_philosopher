@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_time.c                                         :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 16:27:05 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/25 19:21:44 by naal-jen         ###   ########.fr       */
+/*   Created: 2022/08/04 14:20:46 by naal-jen          #+#    #+#             */
+/*   Updated: 2022/08/04 14:20:57 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "libft.h"
+#include <stdlib.h>
 
-long long	fetch_time(void)
+t_list	*ft_lstnew(void *content)
 {
-	struct timeval	time;
+	t_list	*temp;
 
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	temp = (t_list *)malloc(sizeof(*temp));
+	if (!temp)
+		return (NULL);
+	temp->content = content;
+	temp->next = NULL;
+	return (temp);
 }
-
-// void	ft_usleep(useconds_t time)
-// {
-// 	u_int64_t	start;
-
-// 	start = ft_get_time();
-// 	while ((ft_get_time() - start) < time)
-// 		usleep(time);
-// }

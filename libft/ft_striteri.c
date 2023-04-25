@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_time.c                                         :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 16:27:05 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/25 19:21:44 by naal-jen         ###   ########.fr       */
+/*   Created: 2022/08/04 17:46:17 by naal-jen          #+#    #+#             */
+/*   Updated: 2022/08/04 17:46:19 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "libft.h"
+//#include <stdio.h>
 
-long long	fetch_time(void)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	struct timeval	time;
+	unsigned int	i;
 
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	i = 0;
+	while (s[i])
+	{
+		(*f)(i, s + i);
+		i++;
+	}
 }
-
-// void	ft_usleep(useconds_t time)
-// {
-// 	u_int64_t	start;
-
-// 	start = ft_get_time();
-// 	while ((ft_get_time() - start) < time)
-// 		usleep(time);
-// }

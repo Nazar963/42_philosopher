@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_time.c                                         :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 16:27:05 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/25 19:21:44 by naal-jen         ###   ########.fr       */
+/*   Created: 2022/08/04 14:20:39 by naal-jen          #+#    #+#             */
+/*   Updated: 2022/08/04 14:20:41 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "libft.h"
+#include <stdlib.h>
 
-long long	fetch_time(void)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	struct timeval	time;
+	t_list	*new;
+	t_list	*new1;
 
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	new = NULL;
+	while (lst)
+	{
+		new1 = ft_lstnew(f(lst->content));
+		if (!new1)
+		{
+			ft_lstclear(&new, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, new1);
+		lst = lst->next;
+	}
+	return (new);
 }
-
-// void	ft_usleep(useconds_t time)
-// {
-// 	u_int64_t	start;
-
-// 	start = ft_get_time();
-// 	while ((ft_get_time() - start) < time)
-// 		usleep(time);
-// }

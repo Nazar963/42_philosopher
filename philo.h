@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:51:14 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/17 20:43:57 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:09:21 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include "libft/libft.h"
 
 #include <pthread.h> //! for the pthread functions
 #include <string.h> //! to be checked
@@ -24,37 +25,40 @@
 #define TRUE 1
 #define FALSE 0
 
+typedef struct s_philo
+{
+	int		n_philos;
+	int		t_die;
+	int		t_eat;
+	int		t_sleep;
+	int		n_meals;
+	pthread_mutex_t	print;
+}		t_philo;
+
 typedef struct s_loco
 {
-	int		i;
-	size_t	start;
-	int		dead;
-	int		philos;
-	int		die;
-	int		eat;
-	int		sleep;
-	int		eat_times;
-	pthread_t	philo;
+	int			*i;
+	long long	*go;
+	pthread_t	*philosopher;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	print;
+	t_philo	*philo;
 }		t_loco;
-
-typedef struct s_nabo
-{
-	t_loco	*loco;
-	int		id;
-	int		n_eat;
-	int		last_meal;
-	pthread_t	*philo;
-	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*order;
-}		t_nabo;
 
 /* --------------------------------- utils.c -------------------------------- */
 int		ft_atoi(const char *nptr);
 
 /* ------------------------------- validate.c ------------------------------- */
 int		check_args(int ac, char **av);
+void	*initialize(int ac, char **av, t_loco *loco);
+
+/* ------------------------------- one_philo.c ------------------------------ */
+void	*one_philo(void *arg);
+
+/* ------------------------------- get_time.c ------------------------------- */
+long long	fetch_time(void);
+
+/* --------------------------------- print.c -------------------------------- */
+void	print_l_fork(t_loco *loco);
+void	print_died(t_loco *loco);
 
 #endif

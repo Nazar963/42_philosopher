@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_time.c                                         :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 16:27:05 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/25 19:21:44 by naal-jen         ###   ########.fr       */
+/*   Created: 2022/08/04 17:45:10 by naal-jen          #+#    #+#             */
+/*   Updated: 2022/08/04 17:45:12 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "libft.h"
+#include <unistd.h>
 
-long long	fetch_time(void)
+void	ft_putendl_fd(char *s, int fd)
 {
-	struct timeval	time;
+	int	i;
 
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	i = 0;
+	while (s[i])
+	{
+		write (fd, &s[i], 1);
+		i++;
+	}
+	write (fd, "\n", 1);
 }
-
-// void	ft_usleep(useconds_t time)
-// {
-// 	u_int64_t	start;
-
-// 	start = ft_get_time();
-// 	while ((ft_get_time() - start) < time)
-// 		usleep(time);
-// }

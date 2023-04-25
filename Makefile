@@ -6,7 +6,7 @@
 #    By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/08 15:56:39 by naal-jen          #+#    #+#              #
-#    Updated: 2023/04/08 15:59:34 by naal-jen         ###   ########.fr        #
+#    Updated: 2023/04/25 20:07:57 by naal-jen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,27 +15,34 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar -rcs
 INC = -I.
 NAME = philo.a
+LIBFTA = libft/libft.a
+TARGET = philo
 
-MAN = main utils
+CFILES = $(wildcard *.c)
 
-MANFC = $(addsuffix .c, $(MAN))
+OFILES = $(CFILES:.c=.o)
 
-MANO = $(MANFC:.c=.o)
+all: libft $(NAME) $(TARGET)
 
-all: $(NAME)
+libft:
+	@$(MAKE) -C libft
 
-$(NAME): $(MANO)
+$(NAME): $(OFILES)
 	$(AR) $(ARF) $@ $^
 
 %.o: %.c
 	@$(CC) -c $(CFLAGS) $(INC) $< -o $@
 
+$(TARGET): $(CFILES)
+	$(CC) $(CFLAGS) $(OFILES) $(LIBFT) -o $(TARGET)
+
 clean:
-	@rm -f $(MANO) $(BONO)
+	@rm -f $(OFILES)
+	$(MAKE) -C libft fclean
 
 fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft

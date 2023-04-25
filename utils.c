@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:53:30 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/08 15:55:29 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:15:17 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (res * sign);
+}
+
+long	ft_sp_atoi(int ac, char **av)
+{
+	
 }
