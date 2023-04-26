@@ -6,7 +6,7 @@
 #    By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/08 15:56:39 by naal-jen          #+#    #+#              #
-#    Updated: 2023/04/25 20:07:57 by naal-jen         ###   ########.fr        #
+#    Updated: 2023/04/26 19:15:11 by naal-jen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,17 +15,13 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar -rcs
 INC = -I.
 NAME = philo.a
-LIBFTA = libft/libft.a
 TARGET = philo
 
 CFILES = $(wildcard *.c)
 
 OFILES = $(CFILES:.c=.o)
 
-all: libft $(NAME) $(TARGET)
-
-libft:
-	@$(MAKE) -C libft
+all: $(NAME) $(TARGET)
 
 $(NAME): $(OFILES)
 	$(AR) $(ARF) $@ $^
@@ -34,11 +30,10 @@ $(NAME): $(OFILES)
 	@$(CC) -c $(CFLAGS) $(INC) $< -o $@
 
 $(TARGET): $(CFILES)
-	$(CC) $(CFLAGS) $(OFILES) $(LIBFT) -o $(TARGET)
+	$(CC) -g $(CFLAGS) -pthread $(OFILES) -o $(TARGET)
 
 clean:
 	@rm -f $(OFILES)
-	$(MAKE) -C libft fclean
 
 fclean: clean
 	@rm -f $(NAME)

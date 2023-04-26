@@ -6,13 +6,13 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:53:30 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/25 21:15:17 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:28:16 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
 	int			i;
 	long int	res;
@@ -43,5 +43,30 @@ int	ft_atoi(const char *nptr)
 
 long	ft_sp_atoi(int ac, char **av)
 {
-	
+	if (ac == 6)
+		return (ft_atoi(av[5]));
+	else if (ac == 5)
+		return (INTMAX);
+	return (0);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
+}
+
+int	ft_isdigit_new(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
+	}
+	return (1);
 }
