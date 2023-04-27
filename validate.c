@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:20:32 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/26 19:55:29 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/04/27 20:16:13 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_args(int ac, char **av)
 	{
 		if (ac == 6)
 		{
-			if (ft_isdigit(ft_atoi(av[5])))
+			if (ft_isdigit_new(av[5]))
 				return (TRUE);
 			else
 				return (FALSE);
@@ -32,17 +32,23 @@ int	check_args(int ac, char **av)
 
 t_loco	*initialize(int ac, char **av, t_loco *loco)
 {
-	loco->i = 0;
-	loco->philo->n_philos = ft_atoi(av[1]);
-	loco->philo->t_die = ft_atoi(av[2]);
-	loco->philo->t_eat = ft_atoi(av[3]);
-	loco->philo->t_sleep = ft_atoi(av[4]);
-	loco->philo->n_meals = ft_sp_atoi(ac, av) + 1;
-	loco->forks = (pthread_mutex_t *)malloc(loco->philo->n_philos
+	int	i;
+
+	i = 0;
+	loco->n_philos = ft_atoi(av[1]);
+	loco->t_die = ft_atoi(av[2]);
+	loco->t_eat = ft_atoi(av[3]);
+	loco->t_sleep = ft_atoi(av[4]);
+	while (i < loco->n_philos)
+	{
+		loco->philo[i].n_meals = ft_sp_atoi(ac, av) + 1;
+		i++;
+	}
+	loco->forks = (pthread_mutex_t *)malloc(loco->n_philos
 			* sizeof(pthread_mutex_t));
 	if (!loco->forks)
 		return (NULL);
-	if (pthread_mutex_init(&loco->philo->print, NULL) != 0)
+	if (pthread_mutex_init(&loco->print, NULL) != 0)
 		return (NULL);
 	return (loco);
 }

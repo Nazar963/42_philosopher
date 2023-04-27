@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:59:09 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/26 20:45:42 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/04/27 20:16:53 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 void	*one_philo(void *arg)
 {
-	t_loco	*loco;
+	t_philo	*philo;
 
-	loco = (t_loco *)arg;
-	loco->go = fetch_time();
-	print_fork(loco);
-	while (loco->philo->n_meals)
+	philo = (t_philo *)arg;
+	philo->loco->go = fetch_time();
+	print_fork(philo);
+	while (--philo->n_meals)
 	{
-		if (fetch_time() == loco->go + loco->philo->t_die)
+		if (fetch_time() == philo->loco->go + philo->loco->t_die)
 		{
-			print_died(loco);
+			print_died(philo);
 			break ;
 		}
-		loco->philo->n_meals--;
 	}
 	return (0);
 }

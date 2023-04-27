@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:24:33 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/26 22:06:33 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/04/27 20:15:17 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,84 @@
 int	main(int ac, char **av)
 {
 	t_loco	*loco;
-	int		num;
+	int		i;
 
-	num = 0;
+	i = 0;
+
+	//* -------------------------------------------------------------------------- */
 	if (!(ac == 5 || ac == 6))
 		return (0);
+
+	//* -------------------------------------------------------------------------- */
 	if (check_args(ac, av) == FALSE)
 		return (0);
+
+	//* -------------------------------------------------------------------------- */
 	loco = (t_loco *)malloc(sizeof(t_loco));
 	if (!loco)
 		return (0);
+
+	//* -------------------------------------------------------------------------- */
 	loco->philo = (t_philo *)malloc(sizeof(t_philo) * ft_atoi(av[1]));
 	if (!loco->philo)
 		return (0);
-	loco->philosopher = malloc(sizeof(loco->philosopher) * 2);
-	loco = initialize(ac, av, loco);
-	if (loco->philo->n_philos == 1)
+
+	//* -------------------------------------------------------------------------- */
+		loco->philosopher = (pthread_t *)malloc(sizeof(pthread_t) * ft_atoi(av[1]));
+		if (!loco->philosopher)
+			return (0);
+
+	//* -------------------------------------------------------------------------- */
+		loco = initialize(ac, av, loco);
+
+	//! -------------------------------------------------------------------------- */
+	if (ft_atoi(av[1]) == 1)
 	{
-		if (pthread_create(loco->philosopher, NULL, one_philo, (void *)loco) != 0)
+		loco->philo[i].loco = loco;
+		if (pthread_create(&loco->philosopher[i], NULL, one_philo, (void *)&loco->philo[i]) != 0)
 			return (0);
 	}
 	else
 	{
-		while (num < loco->philo->n_philos)
+		while (i < ft_atoi(av[1]))
 		{
-			loco->pos = num;
-			if (pthread_create(loco->philosopher, NULL, multi_philos, (void *)loco) != 0)
+			loco->philo[i].pos = i;
+			loco->philo[i].loco = loco;
+			if (pthread_create(&loco->philosopher[i], NULL, multi_philos, (void *)&loco->philo[i]) != 0)
 				return (0);
-			num++;
+			i++;
 		}
 	}
-	pthread_join(*loco->philosopher, NULL);
-	pthread_mutex_destroy(&loco->philo->print);
+	i = 0;
+	
+	//! -------------------------------------------------------------------------- */
+	while (i < ft_atoi(av[1]))
+	{
+		pthread_join(loco->philosopher[i], NULL);
+		i++;
+	}
+	i = 0;
+
+	//! -------------------------------------------------------------------------- */
+	pthread_mutex_destroy(&loco->print);
+	pthread_mutex_destroy(&loco->monitor);
+
+	while (i < ft_atoi(av[1]))
+	{
+		pthread_mutex_destroy(loco->forks); 
+		i++;
+	}
+
 	exit(1);
-	//!you have to join the thread
-	//! you have to destroy the mutex
-
 }
 
 
-void *multi_philos(void *arg) {
-    t_loco *loco = (t_loco *)arg;
-    t_philo *philo = &loco->philo[loco->current_index];
-    // ...
+// void *multi_philos(void *arg) {
+//     t_loco *loco = (t_loco *)arg;
+//     t_philo *philo = &loco->philo[loco->current_index];
+//     // ...
 
-    printf("%d\n", philo->pos);
+//     printf("%d\n", philo->pos);
 
-    // ...
-}
+//     // ...
+// }
