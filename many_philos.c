@@ -6,13 +6,11 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:29:49 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/30 15:34:13 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:33:20 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-
 
 void	*multi_philos(void	*arg)
 {
@@ -32,15 +30,15 @@ void	*multi_philos(void	*arg)
 	// printf("meals%ld\n", philo->n_meals);
 	while (--philo->loco->n_meals)
 	{
-		printf("meals left%ld\n", philo->loco->n_meals);
+		// printf("meals left%ld\n", philo->loco->n_meals);
 		i++;
-		printf("your i is: %d\n", i);
+		// printf("your i is: %d\n", i);
 		// pthread_mutex_lock(&philo->loco->monitor);
 		if (philo->pos + 1 == philo->loco->n_philos)
 			next = 0;
 		else
 			next = philo->pos + 1;
-		printf("first: %d next: %d\n", philo->pos, next);
+		// printf("first: %d next: %d\n", philo->pos, next);
 		// pthread_mutex_unlock(&philo->loco->monitor);
 		
 		// printf("time fetch: %lld\n", fetch_time());
@@ -78,10 +76,9 @@ void	*multi_philos(void	*arg)
 		// }
 
 
-		pthread_mutex_lock(&philo->loco->print);
+		
 		print_sleeping(philo);
 		ft_usleep(philo->loco->t_sleep);
-		pthread_mutex_unlock(&philo->loco->print);
 
 		// printf("time fetch3: %lld\n", fetch_time());
 		// printf("time g3o: %lld\n", philo->go);
@@ -99,9 +96,7 @@ void	*multi_philos(void	*arg)
 		// 	break ;
 		// }
 
-		pthread_mutex_lock(&philo->loco->print);
 		print_thinking(philo);
-		pthread_mutex_unlock(&philo->loco->print);
 	}
 	exit(1);
 	return (0);
