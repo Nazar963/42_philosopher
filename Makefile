@@ -6,7 +6,7 @@
 #    By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/08 15:56:39 by naal-jen          #+#    #+#              #
-#    Updated: 2023/04/26 19:15:11 by naal-jen         ###   ########.fr        #
+#    Updated: 2023/04/28 12:10:58 by naal-jen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,21 @@ OFILES = $(CFILES:.c=.o)
 all: $(NAME) $(TARGET)
 
 $(NAME): $(OFILES)
-	$(AR) $(ARF) $@ $^
+	@echo "\033[35m  ̿ ̿ ̿'̿'\̵͇̿̿\з=(•_•)=ε/̵͇̿̿/'̿'̿ ̿  compiling ...̿ ̿ ̿'̿'\̵͇̿̿\з=(•_•)=ε/̵͇̿̿/'̿'̿ ̿\033[0m"
+	@$(AR) $(ARF) $@ $^
+	@echo "\033[36mcompilied ʕ•ᴥ•ʔ\033[0m"
 
 %.o: %.c
 	@$(CC) -c $(CFLAGS) $(INC) $< -o $@
 
 $(TARGET): $(CFILES)
-	$(CC) -g $(CFLAGS) -pthread $(OFILES) -o $(TARGET)
+	@$(CC) -g $(CFLAGS) -pthread $(OFILES) -o $(TARGET)
 
 clean:
 	@rm -f $(OFILES)
 
 fclean: clean
+	@echo "\033[35mclean clean clean\033[0m"
 	@rm -f $(NAME)
 
 re: fclean all

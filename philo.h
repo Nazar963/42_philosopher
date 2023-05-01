@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:51:14 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/27 20:16:26 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/04/30 15:31:09 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,19 @@ struct s_loco;
 typedef struct s_philo
 {
 	int				pos;
+	long long	go;
 	struct s_loco	*loco;
-	long int	n_meals;
 }		t_philo;
 
 typedef struct s_loco
 {
+	long int	n_meals;
 	int			n_philos;
 	int			t_die;
 	int			t_eat;
 	int			t_sleep;
-	long long	go;
+	int			t_start;
+	int			flag_death;
 	pthread_t	*philosopher;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
@@ -66,6 +68,7 @@ long long	fetch_time(void);
 void		ft_usleep(useconds_t time);
 
 /* --------------------------------- print.c -------------------------------- */
+void	*camm(void	*arg);
 void	print_fork(t_philo *philo);
 void	print_eating(t_philo *philo);
 void	print_thinking(t_philo *philo);

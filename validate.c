@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:20:32 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/27 20:16:13 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/04/30 15:33:34 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ t_loco	*initialize(int ac, char **av, t_loco *loco)
 	int	i;
 
 	i = 0;
+	loco->flag_death = 0;
 	loco->n_philos = ft_atoi(av[1]);
 	loco->t_die = ft_atoi(av[2]);
 	loco->t_eat = ft_atoi(av[3]);
 	loco->t_sleep = ft_atoi(av[4]);
+	loco->n_meals = ft_sp_atoi(ac, av) + 1;
 	while (i < loco->n_philos)
 	{
-		loco->philo[i].n_meals = ft_sp_atoi(ac, av) + 1;
+		loco->philo[i].go = fetch_time();
 		i++;
 	}
 	loco->forks = (pthread_mutex_t *)malloc(loco->n_philos

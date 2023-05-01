@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:24:33 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/27 20:15:17 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/04/30 15:02:19 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_loco	*loco;
+	pthread_t com;
 	int		i;
 
 	i = 0;
@@ -54,6 +55,9 @@ int	main(int ac, char **av)
 	}
 	else
 	{
+		// printf("%d\n", loco->n_philos);
+		if (pthread_create(&com, NULL, camm, loco) != 0)
+			printf("fuck");
 		while (i < ft_atoi(av[1]))
 		{
 			loco->philo[i].pos = i;
