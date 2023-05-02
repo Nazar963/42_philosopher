@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:51:14 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/30 15:31:09 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:27:06 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ struct s_loco;
 typedef struct s_philo
 {
 	int				pos;
-	long long	go;
+	long long		go;
+	int				next;
 	struct s_loco	*loco;
 }		t_philo;
 

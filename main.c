@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:24:33 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/04/30 15:02:19 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:27:52 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,12 @@ int	main(int ac, char **av)
 		while (i < ft_atoi(av[1]))
 		{
 			loco->philo[i].pos = i;
+			if (loco->philo[i].pos + 1 == loco->n_philos)
+				loco->philo[i].next = 0;
+			else
+				loco->philo[i].next = loco->philo[i].pos + 1;
 			loco->philo[i].loco = loco;
+
 			if (pthread_create(&loco->philosopher[i], NULL, multi_philos, (void *)&loco->philo[i]) != 0)
 				return (0);
 			i++;

@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:29:49 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/01 15:33:20 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:28:30 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,19 @@
 void	*multi_philos(void	*arg)
 {
 	t_philo	*philo;
-	int		next;
-	int		i;
 
 	philo = (t_philo *)arg;
-
-	// printf("my pos is: %d\n", philo->pos);
-	i = 0;
-	next = 0;
 	// pthread_mutex_lock(&philo->loco->monitor);
 	// philo->go = fetch_time();
 	// pthread_mutex_unlock(&philo->loco->monitor);
-	ft_usleep(philo->pos % 2);
+	ft_usleep(philo->pos % 2 * 10);
 	// printf("meals%ld\n", philo->n_meals);
 	while (--philo->loco->n_meals)
 	{
 		// printf("meals left%ld\n", philo->loco->n_meals);
-		i++;
 		// printf("your i is: %d\n", i);
 		// pthread_mutex_lock(&philo->loco->monitor);
-		if (philo->pos + 1 == philo->loco->n_philos)
-			next = 0;
-		else
-			next = philo->pos + 1;
+
 		// printf("first: %d next: %d\n", philo->pos, next);
 		// pthread_mutex_unlock(&philo->loco->monitor);
 		
@@ -51,12 +41,12 @@ void	*multi_philos(void	*arg)
 		// pthread_mutex_lock(&philo->loco->monitor);
 		pthread_mutex_lock(&philo->loco->forks[philo->pos]);
 		print_fork(philo);
-		pthread_mutex_lock(&philo->loco->forks[next]);
+		pthread_mutex_lock(&philo->loco->forks[philo->next]);
 		print_fork(philo);
-		print_eating(philo);
 		philo->go = fetch_time();
+		print_eating(philo);
 		ft_usleep(philo->loco->t_eat);
-		pthread_mutex_unlock(&philo->loco->forks[next]);
+		pthread_mutex_unlock(&philo->loco->forks[philo->next]);
 		pthread_mutex_unlock(&philo->loco->forks[philo->pos]);
 		// pthread_mutex_unlock(&philo->loco->monitor);
 
@@ -101,3 +91,8 @@ void	*multi_philos(void	*arg)
 	exit(1);
 	return (0);
 }
+
+/**
+ * * try do to a mutex lock on all the prints
+ * * try to mke the next operation claculator before the thread
+*/

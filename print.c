@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 17:12:25 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/01 15:33:18 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:22:31 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ void	print_fork(t_philo *philo)
 
 void	print_eating(t_philo *philo)
 {
-	printf("%lld %d is eating\n", fetch_time(), philo->pos);
+	pthread_mutex_lock(&philo->loco->print);
+	printf("\033[35m%lld %d is eating\n\033[0m", fetch_time(), philo->pos);
+	pthread_mutex_unlock(&philo->loco->print);
 }
 
 void	print_sleeping(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->loco->print);
-	printf("%lld %d is sleeping\n", fetch_time(), philo->pos);
+	printf("\033[37m%lld %d is sleeping\n\033[0m", fetch_time(), philo->pos);
 	pthread_mutex_unlock(&philo->loco->print);
 }
 
