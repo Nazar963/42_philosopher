@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:59:09 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/01 15:18:52 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:54:33 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*one_philo(void *arg)
 	philo = (t_philo *)arg;
 	philo->go = fetch_time();
 	print_fork(philo);
-	while (--philo->loco->n_meals)
+	while (--philo->n_meals)
 	{
 		if (fetch_time() == philo->go + philo->loco->t_die)
 		{

@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:51:14 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/02 10:27:06 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:43:40 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ typedef struct s_philo
 	long long		go;
 	int				next;
 	struct s_loco	*loco;
+	pthread_mutex_t	mutex_go;
+	long int	n_meals;
 }		t_philo;
 
 typedef struct s_loco
 {
-	long int	n_meals;
+	long long	start_time;
 	int			n_philos;
 	int			t_die;
 	int			t_eat;
@@ -67,7 +69,7 @@ void	*one_philo(void *arg);
 /* ------------------------------- get_time.c ------------------------------- */
 long long	fetch_time(void);
 void		ft_usleep(useconds_t time);
-
+ 
 /* --------------------------------- print.c -------------------------------- */
 void	*camm(void	*arg);
 void	print_fork(t_philo *philo);
