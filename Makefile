@@ -6,7 +6,7 @@
 #    By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/08 15:56:39 by naal-jen          #+#    #+#              #
-#    Updated: 2023/04/28 12:10:58 by naal-jen         ###   ########.fr        #
+#    Updated: 2023/05/04 12:22:05 by naal-jen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ clean:
 
 fclean: clean
 	@echo "\033[35mclean clean clean\033[0m"
+	@rm -f philo
 	@rm -f $(NAME)
 
 re: fclean all
