@@ -6,7 +6,7 @@
 #    By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/08 15:56:39 by naal-jen          #+#    #+#              #
-#    Updated: 2023/05/04 12:22:05 by naal-jen         ###   ########.fr        #
+#    Updated: 2023/05/05 11:40:30 by naal-jen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(NAME): $(OFILES)
 	@echo "\033[36mcompilied ʕ•ᴥ•ʔ\033[0m"
 
 %.o: %.c
-	@$(CC) -c $(CFLAGS) $(INC) $< -o $@
+	@$(CC) -g -c $(CFLAGS) $(INC) $< -o $@
 
 $(TARGET): $(CFILES)
 	@$(CC) -g $(CFLAGS) -pthread $(OFILES) -o $(TARGET)

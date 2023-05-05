@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:53:30 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/04 12:23:56 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:47:33 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	ft_isdigit_new(char *str)
 	{
 		if (ft_isdigit(str[i]) == 0)
 			return (0);
-		// if (atoi(str[i]) < 0 || at)
 	}
 	return (1);
 }

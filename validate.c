@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:20:32 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/03 21:06:22 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:53:30 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ int	check_args(int ac, char **av)
 	return (0);
 }
 
+int	check_values(t_loco *loco)
+{
+	if (loco->n_philos < 0 || loco->t_die < 0 || loco->t_eat < 0
+		|| loco->t_sleep < 0)
+		return (0);
+	return (1);
+}
+
 t_loco	*initialize(int ac, char **av, t_loco *loco)
 {
 	int	i;
@@ -41,10 +49,17 @@ t_loco	*initialize(int ac, char **av, t_loco *loco)
 	loco->t_eat = ft_atoi(av[3]);
 	loco->t_sleep = ft_atoi(av[4]);
 	loco->start_time = fetch_time();
+	if (check_values(loco) == 0)
+		return (NULL);
 	while (i < loco->n_philos)
 	{
 		loco->philo[i].n_meals = ft_sp_atoi(ac, av);
 		loco->philo[i].go = fetch_time();
+		//* --------------------------------------------- new -------------------------------------------- */
+		loco->philo[i].pos = 0;
+		loco->philo[i].next = 0;
+		if (pthread_mutex_init(&loco->philo[i].mutex_go, NULL) != 0)
+			return(NULL);
 		i++;
 	}
 	loco->forks = (pthread_mutex_t *)malloc(loco->n_philos
