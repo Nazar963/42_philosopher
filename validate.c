@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:20:32 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/05 15:32:02 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/06 14:13:54 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_loco	*initialize(int ac, char **av, t_loco *loco)
 	loco->t_eat = ft_atoi(av[3]);
 	loco->t_sleep = ft_atoi(av[4]);
 	loco->start_time = fetch_time();
+	loco->result = 0;
 	if (check_values(loco) == 0)
 		return (NULL);
 	while (i < loco->n_philos)

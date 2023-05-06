@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:51:14 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/05 15:30:39 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/06 14:13:39 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_loco
 	long long	start_time;
 	int			n_philos;
 	int			t_die;
+	int			result;
 	int			t_eat;
 	int			t_sleep;
 	// int			t_start;
