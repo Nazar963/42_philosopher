@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 17:12:25 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/05 09:27:55 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/06 11:48:32 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void	*camm(void	*arg)
 	t_loco *loco;
 	int	i;
 	int j;
+	int	*result;
 
 	i = 0;
 	j = 0;
 	loco = (t_loco *)arg;
+	result =  (int *)malloc(sizeof(int));
 	while(loco->flag_death == 0)
 	{ 
 		j = 0;
@@ -36,8 +38,9 @@ void	*camm(void	*arg)
 				loco->flag_death = 1;
 				ft_usleep(1);
 				printf("%lld %d died\n", fetch_time() - loco->start_time, j);
-				exit(1);
 				pthread_mutex_unlock(&loco->monitor);
+				*result = 1;
+				pthread_exit(result);
 			}
 			pthread_mutex_unlock(&loco->philo[j].mutex_go);
 			j++;

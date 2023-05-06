@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:20:32 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/05 11:53:30 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:32:02 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,20 @@ t_loco	*initialize(int ac, char **av, t_loco *loco)
 			return(NULL);
 		i++;
 	}
+	i = 0;
 	loco->forks = (pthread_mutex_t *)malloc(loco->n_philos
 			* sizeof(pthread_mutex_t));
 	if (!loco->forks)
 		return (NULL);
+	while (i < loco->n_philos)
+	{
+		if (pthread_mutex_init(&loco->forks[i], NULL) != 0)
+			return (NULL);
+		i++;
+	}
 	if (pthread_mutex_init(&loco->print, NULL) != 0)
+		return (NULL);
+	if (pthread_mutex_init(&loco->monitor, NULL) != 0)
 		return (NULL);
 	return (loco);
 }

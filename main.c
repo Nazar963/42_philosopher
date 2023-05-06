@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:24:33 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/05 11:39:31 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/06 12:16:31 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	main(int ac, char **av)
 	t_loco	*loco;
 	pthread_t com;
 	int		i;
+	int		*result;
 
 	i = 0;
-	
 	//* ---------------------------------------------------------------------------------------------- */
 	if (!(ac == 5 || ac == 6))
 		return (0);
@@ -68,6 +68,31 @@ int	main(int ac, char **av)
 			i++;
 		}
 	}
+	if (pthread_join(com, (void **)&result) != 0)
+		return (0);
+	if (*result == 1)
+	{
+		i = 0;
+		while (i < ft_atoi(av[1]))
+		{
+			pthread_join(loco->philosopher[i], NULL);
+			i++;
+		}
+		i = 0;
+		pthread_mutex_destroy(&loco->print);
+		pthread_mutex_destroy(&loco->monitor);
+		pthread_mutex_destroy(&loco->philo->mutex_go);
+		while (i < ft_atoi(av[1]))
+		{
+			pthread_mutex_destroy(loco->forks); 
+			i++;
+		}
+		free(loco->philosopher);
+		free(loco->forks);
+		free(loco->philo);
+		free (loco);
+		exit(1);
+	}
 	i = 0;
 	while (i < ft_atoi(av[1]))
 	{
@@ -83,6 +108,13 @@ int	main(int ac, char **av)
 		pthread_mutex_destroy(loco->forks); 
 		i++;
 	}
+	// i = 0;
+	// while (i < ft_atoi(av[1]))
+	// {
+	free(loco->philosopher);
+	free(loco->forks);
+		// i++;
+	// }
 	free(loco->philo);
 	free (loco);
 	exit(1);

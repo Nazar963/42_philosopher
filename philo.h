@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:51:14 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/04 18:49:27 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:30:39 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_loco
 	int			t_die;
 	int			t_eat;
 	int			t_sleep;
-	int			t_start;
+	// int			t_start;
 	int			flag_death;
 	pthread_t	*philosopher;
 	pthread_mutex_t	*forks;
