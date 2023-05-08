@@ -6,19 +6,19 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:29:49 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/06 13:47:23 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:02:27 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*multi_philos(void	*arg)
+void	*multi(void	*arg)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	ft_usleep((philo->pos % 2) * 100);
-	while (philo->n_meals)
+	while (philo->n_meals && philo->loco->flag_death == 0)
 	{
 		pthread_mutex_lock(&philo->loco->forks[philo->pos]);
 		print_fork(philo);
@@ -30,10 +30,8 @@ void	*multi_philos(void	*arg)
 		ft_usleep(philo->loco->t_eat);
 		pthread_mutex_unlock(&philo->loco->forks[philo->next]);
 		pthread_mutex_unlock(&philo->loco->forks[philo->pos]);
-
 		print_sleeping(philo);
 		ft_usleep(philo->loco->t_sleep);
-		
 		print_thinking(philo);
 	}
 	return (0);

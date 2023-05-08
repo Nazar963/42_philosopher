@@ -6,25 +6,21 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:59:09 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/06 13:57:57 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/08 12:44:05 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*one_philo(void *arg)
+void	*one(void *arg)
 {
 	t_philo	*philo;
 
-	// printf("hello\n");
 	philo = (t_philo *)arg;
-	// printf("philo->meals: %ld\n", philo->n_meals);
 	philo->go = fetch_time();
 	print_fork(philo);
 	while (--philo->n_meals)
 	{
-		// printf("fetch_time: %lld\nphilo->go: %lld\nphilo->loco->t_die: %d\n the sum: %lld\n", fetch_time(), philo->go, philo->loco->t_die, philo->go + philo->loco->t_die); 
-		// printf("fetch:%lld\n sum:%lld\n  remain: %lld\n", fetch_time(), philo->go + philo->loco->t_die, (philo->go + philo->loco->t_die) - fetch_time());
 		if (fetch_time() == philo->go + philo->loco->t_die)
 		{
 			print_died(philo);
