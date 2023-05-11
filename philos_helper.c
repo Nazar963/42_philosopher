@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:26:21 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/08 17:03:36 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:28:11 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ int	camm_helper(int j, t_loco *loco)
 	{
 		if (loco->p[j].n_meals == 0)
 			return (0);
-		pthread_mutex_unlock(&loco->p[j].mutex_go);
-		pthread_mutex_lock(&loco->monitor);
+		pthread_mutex_lock(&loco->print);
 		loco->flag_death = 1;
+		pthread_mutex_unlock(&loco->print);
+		pthread_mutex_lock(&loco->monitor);
 		printf("%lld %d died\n", fetch_time() - loco->start_time, j);
 		pthread_mutex_unlock(&loco->monitor);
+		pthread_mutex_unlock(&loco->p[j].mutex_go);
 		return (0);
 	}
 	return (1);
