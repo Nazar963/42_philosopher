@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:26:21 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/11 18:28:11 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:58:02 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	*camm(void	*arg)
 				return (NULL);
 			pthread_mutex_unlock(&loco->p[j].mutex_go);
 		}
+		ft_usleep(200);
 	}
 	return (NULL);
 }
