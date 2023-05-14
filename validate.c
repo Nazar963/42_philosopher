@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:20:32 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/11 19:07:37 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/14 12:04:22 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_loco	*initialize_philos(int ac, char **av, int i, t_loco *loco)
 {
 	while (++i < loco->n_philos)
 	{
+		loco->p[i].i = 0;
 		loco->p[i].n_meals = ft_sp_atoi(ac, av);
 		loco->p[i].go = fetch_time();
 		loco->p[i].f_f = 0;
