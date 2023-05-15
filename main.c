@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:24:33 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/11 19:15:41 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:12:06 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	free_all_one(char **av, t_loco *loco)
 	pthread_mutex_destroy(&loco->print);
 	pthread_mutex_destroy(&loco->monitor);
 	pthread_mutex_destroy(&loco->p->mutex_go);
-	pthread_mutex_destroy(&loco->p->death_duck);
 	while (i < ft_atoi(av[1]))
 	{
 		pthread_mutex_destroy(loco->forks);
@@ -54,8 +53,6 @@ void	free_all_plus(pthread_t com, char **av, t_loco *loco)
 	while (i < ft_atoi(av[1]))
 	{
 		pthread_mutex_destroy(&loco->p[i].mutex_go);
-		pthread_mutex_destroy(&loco->p[i].death_duck);
-		pthread_mutex_destroy(&loco->p[i].shit);
 		pthread_mutex_destroy(&loco->forks[i]);
 		i++;
 	}

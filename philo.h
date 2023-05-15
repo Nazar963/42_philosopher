@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:51:14 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/14 11:58:49 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:11:22 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ typedef struct s_philo
 	int				next;
 	struct s_loco	*loco;
 	pthread_mutex_t	mutex_go;
-	pthread_mutex_t	death_duck;
-	pthread_mutex_t	shit;
 	long int		n_meals;
 }		t_philo;
 

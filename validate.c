@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:20:32 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/05/14 12:04:22 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:11:20 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,6 @@ t_loco	*initialize_philos(int ac, char **av, int i, t_loco *loco)
 		loco->p[i].pos = 0;
 		loco->p[i].next = 0;
 		if (pthread_mutex_init(&loco->p[i].mutex_go, NULL) != 0)
-			return (NULL);
-		if (pthread_mutex_init(&loco->p[i].death_duck, NULL) != 0)
-			return (NULL);
-		if (pthread_mutex_init(&loco->p[i].shit, NULL) != 0)
 			return (NULL);
 	}
 	return (loco);
