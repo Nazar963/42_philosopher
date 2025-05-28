@@ -1,8 +1,8 @@
 # Philosophers 🍽️
 
 [![42 School](https://img.shields.io/badge/42-School-blue)](https://42firenze.it/)
-[![GitHub license](https://img.shields.io/github/license/Nazar963/42_philosopher)](https://github.com/Nazar963/42_philosopher/blob/master/LICENSE)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/Nazar963/42_philosopher/build.yml?branch=master)](https://github.com/Nazar963/42_philosopher/actions)
+[![GitHub license](https://img.shields.io/github/license/Nazar963/42_philosopher)](https://github.com/Nazar963/42_philosopher/blob/main/LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Nazar963/42_philosopher/.github/workflows/build.yml?branch=main)](https://github.com/Nazar963/42_philosopher/actions)
 
 A solution to the classic Dining Philosophers Problem, implementing concurrency control with threads/mutexes (mandatory) to prevent deadlocks and data races.
 
