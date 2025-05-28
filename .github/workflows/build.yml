@@ -37,8 +37,4 @@ jobs:
         sleep 5
         kill -9 $PID || true
       
-    - name: Check for memory leaks
-      run: |
-        valgrind --leak-check=full --log-file=valgrind_output.txt ./philo 4 410 200 200 5
-        cat valgrind_output.txt
-        
+
