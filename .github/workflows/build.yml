@@ -1,0 +1,44 @@
+name: Build & Test Philosophers
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Set up environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc make valgrind
+
+    - name: Build mandatory part
+      run: |
+        make
+        
+    - name: Test mandatory part
+      run: |
+        # Basic test: 4 philosophers, time_to_die 410ms, time_to_eat 200ms, time_to_sleep 200ms
+        # This should not cause any philosopher to die
+        ./philo 4 410 200 200 &
+        PID=$!
+        sleep 3
+        kill -9 $PID || true
+        
+        # Test with limited number of meals
+        ./philo 5 800 200 200 7 &
+        PID=$!
+        sleep 5
+        kill -9 $PID || true
+      
+    - name: Check for memory leaks
+      run: |
+        valgrind --leak-check=full --error-exitcode=1 --log-file=valgrind_output.txt ./philo 4 410 200 200 5
+        cat valgrind_output.txt
+        
