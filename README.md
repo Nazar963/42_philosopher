@@ -142,7 +142,7 @@ Actions: `has taken a fork`, `is eating`, `is sleeping`, `is thinking`, `died`
 - Open-source community for testers and debugging tools
 
 ## 🤝 Contributing
-Feel free to submit issues or pull requests if you have suggestions for improving the test suite or adding more test cases.
+Feel free to submit issues or pull requests if you have suggestions for improving the application or adding more features.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -161,5 +161,5 @@ For questions or feedback, please open an issue in the repository.
 [![GitHub Follow](https://img.shields.io/github/followers/Nazar963?style=social)](https://github.com/Nazar963)
 
 ---
-
+## 🍀 Goodluck:
 Good luck with your Philosophers project at 42! 🚀
